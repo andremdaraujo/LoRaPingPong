@@ -24,6 +24,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "radio.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -65,6 +67,8 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 
+	uint8_t test_buffer[] = { 0x44, 0x06, 0x20, 0xC0, 0x08, 0xD9, 0xFA, 0x88, 0x26 };
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -87,6 +91,21 @@ int main(void)
   MX_GPIO_Init();
   MX_SubGHz_Phy_Init();
   /* USER CODE BEGIN 2 */
+
+//  while(1)
+//  {
+//	HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 1);
+//
+//	Radio.Send(test_buffer, 9);
+//
+//
+//
+//
+//	HAL_Delay(250);
+//	HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 0);
+//
+//	HAL_Delay(750);
+//  }
 
   /* USER CODE END 2 */
 

@@ -407,6 +407,7 @@ static void PingPong_Process(void)
             isMaster = true;
             APP_LOG(TS_ON, VLEVEL_L, "Master Rx start\n\r");
             Radio.Rx(RX_TIMEOUT_VALUE);
+
           }
         }
       }
@@ -426,7 +427,15 @@ static void PingPong_Process(void)
         APP_LOG(TS_ON, VLEVEL_L, "Master Tx start\n\r");
         /* master sends PING*/
         memcpy(BufferTx, PING, sizeof(PING) - 1);
+
+
+        HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 1);
+
         Radio.Send(BufferTx, PAYLOAD_LEN);
+
+
+        HAL_Delay(500);
+        HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 0);
       }
       else
       {
