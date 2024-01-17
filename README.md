@@ -30,7 +30,7 @@ And also these, to facilitate debug:
 #define LOW_POWER_DISABLE             1
 ```
   
-The E32 module is configured as follows:  
+The E32 module is configured as follows, and it is running in Normal mode (M0 and M1 in LOW):  
   
 ![E32 setting](./img/ebyte_setting.png)  
   
