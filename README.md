@@ -72,8 +72,8 @@ Maybe the exact values could be different, due to a different key,
 and the last byte (CRC) would most likely be different, but notice that "TEST" has two "T"s and that encrypted message has "0xE7" twice.  
 This is not the case in my messages, as they do not repeat bytes (for "TEST" I get: 44 06 20 C0 08 D9 FA 88 26).  
   
-I tried several test messages and they are consistently delivered to the STM32 (if I repeat the message on the E32, I get exactly the same response from the STM32), 
-but they seem to have a different encryption - or my radio settings are incorrect and data is getting corrupted due to a misinterpretation by the STM32 radio.  
+I tried several test messages, and they are consistently delivered to the STM32 (if I repeat the message on the E32, I get exactly the same response from the STM32), 
+but they seem to have a different encryption - or my radio settings are incorrect, and data is getting corrupted due to a misinterpretation by the STM32 radio.  
   
 Here are some tests and responses I recorded:  
   
@@ -83,6 +83,6 @@ Here are some tests and responses I recorded:
   
 I'll try next:  
 - Get another E32 module to serve as a sniffer and validate what the 1st E32 module is sending;  
-- Get another LoRa module, based on the same IC (SX1276), but with SPI interface and access to radio parameter similar to what is available on the STM32 (BW, SF, CR, etc.) and not the "high level" parameters available on the E32 module (channel, air rate, etc.). From what I read, this modulo also does not have the encryption of data, so communication should be simpler.
+- Get another LoRa module, based on the same IC (SX1276), but with SPI interface and access to radio parameter similar to what is available on the STM32 (BW, SF, CR, etc.) and not the "high level" parameters available on the E32 module (channel, air rate, etc.). From what I read, this module also does not have the encryption of data, so communication should be simpler.
   
-  (img)
+![LoRa V2 module](./img/LoRa_V2_module.png)  
