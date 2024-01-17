@@ -1,4 +1,4 @@
-# LoRa communication: WL55JC1 and E32-900T20D
+# LoRa communication: STM32WL55JC1 and E32-900T20D
 
 This small project is an atemp to test LoRa communication between a [Nucleo WL55JC1](https://www.st.com/en/evaluation-tools/nucleo-wl55jc.html) 
 ([STM32WL55JC](https://www.st.com/en/microcontrollers-microprocessors/stm32wl55jc.html) from ST Microelectronics) and an 
