@@ -93,7 +93,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  APP_Init();
+  APP_Init();	// Program enters this function and should never return; infinite loop on APP_Run();
 
   /* USER CODE END 2 */
 

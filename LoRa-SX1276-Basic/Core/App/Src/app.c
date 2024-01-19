@@ -21,6 +21,8 @@ void APP_Init(void)
 		HAL_Delay(250);
 	}
 
+	SX1267_Init();
+
 	APP_Run();
 }
 
