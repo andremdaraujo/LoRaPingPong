@@ -7,9 +7,13 @@
 
 #include "app.h"
 
+#include "cli.h"
+
 void APP_Init(void)
 {
 	uint8_t blink_counter = 0;
+
+	CLI_Write("LoRa G-NiceRF Module test with STM32C011 \r\n");
 
 	for (blink_counter = 0; blink_counter < 6; blink_counter++)
 	{
