@@ -20,27 +20,30 @@ Maintainer: Miguel Luis and Gregory Cristian
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
-#include "stm32l1xx.h"
-#include "stm32l1xx_hal.h"
+//#include "stm32l1xx.h"
+//#include "stm32l1xx_hal.h"
+#include "main.h"
+
+
 #include "utilities.h"
 #include "timer.h"
 #include "delay.h"
 #include "gpio.h"
-#include "adc.h"
+//#include "adc.h"
 #include "spi.h"
-#include "i2c.h"
+//#include "i2c.h"
 #include "uart.h"
 #include "radio.h"
 #include "sx1276/sx1276.h"
-#include "mag3110.h"
-#include "mma8451.h"
-#include "mpl3115.h"
-#include "sx9500.h"
-#include "gps.h"
-#include "gps-board.h"
-#include "rtc-board.h"
+//#include "mag3110.h"
+//#include "mma8451.h"
+//#include "mpl3115.h"
+//#include "sx9500.h"
+//#include "gps.h"
+//#include "gps-board.h"
+//#include "rtc-board.h"
 #include "sx1276-board.h"
-#include "uart-board.h"
+//#include "uart-board.h"
 
 #if defined( USE_USB_CDC )
 #include "uart-usb-board.h"
@@ -164,9 +167,9 @@ extern Gpio_t Led4;
 extern Adc_t Adc;
 extern I2c_t I2c;
 extern Uart_t Uart1;
-#if defined( USE_USB_CDC )
-extern Uart_t UartUsb;
-#endif
+//#if defined( USE_USB_CDC )
+//extern Uart_t UartUsb;
+//#endif
 
 extern Gpio_t GpsPps;
 extern Gpio_t GpsRx;

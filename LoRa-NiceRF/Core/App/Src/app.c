@@ -9,6 +9,8 @@
 
 #include "cli.h"
 
+#include "SEMTECH_main.h"
+
 void APP_Init(void)
 {
 	uint8_t blink_counter = 0;
@@ -30,6 +32,6 @@ void APP_Run(void)
 {
 	while (1)
 	{
-		;
+		SEMTECH_main();
 	}
 }

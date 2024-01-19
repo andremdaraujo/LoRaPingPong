@@ -14,7 +14,7 @@ Maintainer: Miguel Luis, Gregory Cristian and Wael Guibene
 */
 #include <math.h>
 #include <string.h>
-#include "SEMTECH_radio.h"
+#include "radio.h"
 #include "sx1276.h"
 
 #include "../Inc/board.h"
