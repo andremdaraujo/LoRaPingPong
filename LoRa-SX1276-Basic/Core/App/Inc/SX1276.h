@@ -5,10 +5,27 @@
  *      Author: Eng. André A. M. Araújo
  */
 
+// Based on: https://github.com/sandeepmistry/arduino-LoRa
+// https://www.electroniclinic.com/lora-sx1278-arduino-hello-world-sensor-monitoring-projects/
+
+//#if (( USE_MODEM_LORA == 1 ) && ( USE_MODEM_FSK == 0 ))
+//#define LORA_BANDWIDTH                              2         /* [0: 125 kHz, 1: 250 kHz, 2: 500 kHz, 3: Reserved] */
+//#define LORA_SPREADING_FACTOR                       11        /* [SF7..SF12] */
+//#define LORA_CODINGRATE                             1         /* [1: 4/5, 2: 4/6, 3: 4/7, 4: 4/8] */
+//#define LORA_PREAMBLE_LENGTH                        8         /* Same for Tx and Rx */
+//#define LORA_SYMBOL_TIMEOUT                         5         /* Symbols */
+//#define LORA_FIX_LENGTH_PAYLOAD_ON                  false
+//#define LORA_IQ_INVERSION_ON                        false
+
 #ifndef APP_INC_SX1276_H_
 #define APP_INC_SX1276_H_
 
 #include "main.h"
+
+#define bitRead(value, bit) (((value) >> (bit)) & 0x01)
+#define bitSet(value, bit) ((value) |= (1UL << (bit)))
+#define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
+#define bitWrite(value, bit, bitvalue) (bitvalue ? bitSet(value, bit) : bitClear(value, bit))
 
 #define SPI_TIMEOUT 100
 
@@ -85,5 +102,27 @@ uint8_t SX1276_GetVersion(void);
 void 	SX1276_Sleep(void);
 void 	SX1276_Standby(void);
 void	SX1276_SetFrequency(uint32_t frequency);
+void	SX1276_SetTxPower(uint8_t power);
+void	SX1276_SetOCP(uint8_t current);
+
+void	SX1276_SetSpreadingFactor(uint8_t sf);
+void 	SX1276_SetSignalBandwidth(uint32_t sbw);
+void 	SX1276_SetCodingRate4(uint8_t denominator);
+void 	SX1276_SetPreambleLength(uint32_t length);
+
+void 	SX1276_SetLdoFlag(void);
+
+uint32_t	SX1276_GetSignalBandwidth(void);
+uint8_t 	SX1276_GetSpreadingFactor(void);
+
+uint8_t	SX1276_StartPacket(uint8_t implicitHeader);
+uint8_t SX1276_FinishPacket(void);
+
+uint8_t	SX1276_IsTransmitting(void);
+
+void 	SX1176_SetExplicitHeader (void);
+void 	SX1276_SetImplicitHeader(void);
+
+void 	SX1276_Print(uint8_t * buffer, uint8_t lenght);
 
 #endif /* APP_INC_SX1276_H_ */

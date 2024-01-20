@@ -23,6 +23,8 @@ void APP_Init(void)
 
 	SX1267_Init();
 
+
+
 	APP_Run();
 }
 
@@ -30,6 +32,12 @@ void APP_Run(void)
 {
 	while (1)
 	{
-		;
+		SX1276_StartPacket(0);
+		SX1276_Print((uint8_t *)"TEST", 4);
+		SX1276_FinishPacket();
+
+		CLI_Write("'TEST' sent via LoRa \r\n");
+
+		HAL_Delay(1000);
 	}
 }
