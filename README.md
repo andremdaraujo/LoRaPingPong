@@ -41,6 +41,8 @@ Therefore, the LoRa configuration in this test is:
 - Bandwidth:         500 kHz
 - Spreading factor:  SF11
 - Coding rate:       4/5  
+  
+These parameters can be checked using the following [LoRa Calculator](https://www.rfwireless-world.com/calculators/LoRa-Data-Rate-Calculator.html).  
     
 The E32 module is then connected to the PC via a UART/USB converter and data can be sent manually using a terminal application 
 (in this case, I'm using [Termite](https://www.compuphase.com/software_termite.htm) for the E32 - **COM7**).  
