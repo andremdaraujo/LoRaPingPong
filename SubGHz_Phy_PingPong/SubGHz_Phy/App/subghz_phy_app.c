@@ -84,6 +84,9 @@ typedef enum
 /* Radio events function pointer */
 static RadioEvents_t RadioEvents;
 
+static uint8_t e32_buffer[] = {0x41, 0x35, 0x30, 0xC3, 0x80, 0x9D};
+
+
 /* USER CODE BEGIN PV */
 /*Ping Pong FSM states */
 static States_t State = RX;
@@ -428,14 +431,14 @@ static void PingPong_Process(void)
         /* master sends PING*/
         memcpy(BufferTx, PING, sizeof(PING) - 1);
 
-
+        memcpy(BufferTx, e32_buffer, sizeof(e32_buffer));	// André
         HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 1);
 
         Radio.Send(BufferTx, PAYLOAD_LEN);
 
 
-        HAL_Delay(500);
-        HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 0);
+        HAL_Delay(250);										// André
+        HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 0);		// André
       }
       else
       {
