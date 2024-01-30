@@ -84,8 +84,7 @@ typedef enum
 /* Radio events function pointer */
 static RadioEvents_t RadioEvents;
 
-static uint8_t e32_buffer[] = {0x41, 0x35, 0x30, 0xC3, 0x80, 0x9D};
-
+static uint8_t custom_buffer[] = "Hello from STM32WL55JC1!";
 
 /* USER CODE BEGIN PV */
 /*Ping Pong FSM states */
@@ -298,7 +297,13 @@ static void OnRxDone(uint8_t *payload, uint16_t size, int16_t rssi, int8_t LoraS
       APP_LOG(TS_OFF, VLEVEL_H, "\n\r");
     }
   }
+
+  for (int32_t i = 0; i < PAYLOAD_LEN; i++)
+  {
+	  APP_LOG(TS_OFF, VLEVEL_H, "%c", BufferRx[i]);
+  }
   APP_LOG(TS_OFF, VLEVEL_H, "\n\r");
+
   /* Run PingPong process in background*/
   UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_SubGHz_Phy_App_Process), CFG_SEQ_Prio_0);
   /* USER CODE END OnRxDone */
@@ -429,16 +434,16 @@ static void PingPong_Process(void)
         HAL_Delay(Radio.GetWakeupTime() + RX_TIME_MARGIN + random_delay);
         APP_LOG(TS_ON, VLEVEL_L, "Master Tx start\n\r");
         /* master sends PING*/
-        memcpy(BufferTx, PING, sizeof(PING) - 1);
+        //memcpy(BufferTx, PING, sizeof(PING) - 1);
 
-        memcpy(BufferTx, e32_buffer, sizeof(e32_buffer));	// André
+        memcpy(BufferTx, custom_buffer, sizeof(custom_buffer) - 1);	// André
         HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 1);
 
-        Radio.Send(BufferTx, PAYLOAD_LEN);
+        //Radio.Send(BufferTx, PAYLOAD_LEN);
+        Radio.Send(BufferTx, sizeof(custom_buffer) - 1);			// André
 
-
-        HAL_Delay(250);										// André
-        HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 0);		// André
+        HAL_Delay(250);												// André
+        HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 0);				// André
       }
       else
       {
