@@ -88,3 +88,21 @@ I'll try next:
 - Get another LoRa module, based on the same IC (SX1276), but with SPI interface and access to radio parameter similar to what is available on the STM32 (BW, SF, CR, etc.) and not the "high level" parameters available on the E32 module (channel, air rate, etc.). From what I read, this module also does not have the encryption of data, so communication should be simpler.
   
 ![LoRa V2 module](./img/LoRa_V2_module.png)  
+  
+# New findings
+
+I got a second E32 module, and they communicate perfectly between each other (TX and RX both ways). However, I can only send messages from the E32 to the STM32WL. I couldn't successfully receive messages from the STM32WL with the E32.  
+  
+I also got a pair of SX1276 SPI modules. Using these basic [Arduino programs for the STM32 BluePill](https://how2electronics.com/interfacing-lora-sx1276-with-stm32-microcontroller-lr1276-915mhz/) with minor changes (to match radio configurations) 
+I was able to transmit and receive messages to and from the STM32WL. Results are show in the next 2 images:  
+  
+![SX1276 transmission to STM32WL](./img/sx1276_tx.png) 
+  
+![SX1276 reception from STM32WL](./img/sx1276_rx.png) 
+
+Interestingly, the STM32WL receives from both LoRa modules, but the E32 and SX1276 don't recognize each other.
+  
+![All modules](./img/all_modules.jpg) 
+  
+So now I have a baseline to work with the SX1276 module and STM32WL.
+  
