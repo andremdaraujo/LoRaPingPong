@@ -1,4 +1,9 @@
 /* USER CODE BEGIN Header */
+
+// References:
+// https://forum.digikey.com/t/using-the-low-level-sub-ghz-radio-driver-for-the-stm32wl-series/18253
+// https://github.com/eewiki/stm32wl_radioDriver_pingPong/tree/main
+
 /**
   ******************************************************************************
   * @file           : main.c
@@ -247,7 +252,7 @@ int main(void)
 	  }
 
     BSP_LED_Toggle(LED_BLUE);
-    HAL_Delay(100);
+    HAL_Delay(250);
   }
   /* USER CODE END 3 */
 }
@@ -429,6 +434,9 @@ void eventTxDone(pingPongFSM_t *const fsm)
 void eventRxDone(pingPongFSM_t *const fsm)
 {
   HAL_UART_Transmit(&huart2, (uint8_t *)"Event RX Done\r\n", 15, HAL_MAX_DELAY);
+  HAL_UART_Transmit(&huart2, (uint8_t *)"RX Buffer: ", 11, HAL_MAX_DELAY);
+  HAL_UART_Transmit(&huart2, (uint8_t *)fsm->rxBuffer, strlen((char *)fsm->rxBuffer), HAL_MAX_DELAY);
+  HAL_UART_Transmit(&huart2, (uint8_t *)"\r\n", 2, HAL_MAX_DELAY);
   switch(fsm->state)
   {
     case STATE_MASTER:
@@ -450,7 +458,7 @@ void eventRxDone(pingPongFSM_t *const fsm)
           }
           else
           {
-            enterMasterRx(fsm);
+        	  enterMasterRx(fsm);
           }
           break;
         default:
@@ -533,7 +541,7 @@ void eventRxTimeout(pingPongFSM_t *const fsm)
   HAL_UART_Transmit(&huart2, (uint8_t *)"Event RX Timeout\r\n", 18, HAL_MAX_DELAY);
 
   BSP_LED_On(LED_RED);
-  HAL_Delay(250);
+  HAL_Delay(10);
   BSP_LED_Off(LED_RED);
 
 
